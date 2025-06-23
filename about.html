@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - Shirokoeki</title>
+    <link rel="stylesheet" href="style/index.css">
+</head>
+<body>    
+    <audio id="bg-music" loop>
+        <source src="musica/meow.mp3" type="audio/mpeg">
+    </audio>
+    <div class="navbar-wrapper">
+        <div class="navbar">
+            <div class="music-toggle">
+                <button id="mute-btn">▶ Play</button>
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Me</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="main-container">
+        <div class="content-box">
+            <h1 style="text-align: center;">ABOUT ME</h1>
+            <div style="display: flex; justify-content: center;">
+                <img src="images/completo.png" alt="Completo Italiano" class="completo-img">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const music = document.getElementById("bg-music");
+        const muteBtn = document.getElementById("mute-btn");
+
+        let isMuted = false;
+        let hasStarted = false;
+
+        muteBtn.addEventListener("click", () => {
+            if (!hasStarted) {
+                music.play();
+                hasStarted = true;
+            }
+
+            isMuted = !isMuted;
+            music.muted = isMuted;
+            muteBtn.textContent = isMuted ? "▶ Play" : "▌▌Pause";
+        });
+    </script>
+
+</body>
+</html>

@@ -4,19 +4,105 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shirokoeki's Profile</title>
-    <style>
-         body {
-            background: #000 url('images/background.gif') top left;
-        }
-        h1 {
-            color: white;
-        }
-    </style>
+    <link rel="stylesheet" href="style/index.css">
 </head>
 <body>
-    <center>
-        <h1>hello</h1>
-    </center>
-    
+    <audio id="bg-music" loop>
+        <source src="musica/meow.mp3" type="audio/mpeg">
+        Tu navegador no soporta audio.
+    </audio>
+    <div id="loader">
+        <div class="loader-content">
+            <p>Cargando perfil...</p>
+        </div>
+    </div>
+    <div id="main-content" style="display: none;">
+    <div class="navbar-wrapper fade-in delay-1">
+        <div class="navbar">
+            <div class="music-toggle">
+                <button id="mute-btn">▶ Play</button>
+            </div>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="/about.html">About Me</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="main-container fade-in delay-2">
+        <div class="sidebar">
+            <img src="https://api.lanyard.rest/412370487885168663.png" alt="Profile Picture" class="profile-pic">
+            <h2 id="discord-username">Cargando...</h2>
+            <div id="discord-status">
+                <span class="status-indicator offline"></span>
+                <span id="status-text">Desconectado</span>
+            </div>
+            <p>Owa, solo estoy probando</p>
+        </div>
+        <div class="content-box fade-in delay-4">
+            <h1>Bienvenidos!</h1>
+            <p>Hice esta pagina porque se me dio la gana</p>
+            <p>No creo que ponga muchas cosas aqui.</p>
+        </div>
+    </div>
+    </div>
+    <script>
+    const discordId = "412370487885168663";
+
+    fetch(`https://api.lanyard.rest/v1/users/${discordId}`)
+        .then(res => res.json())
+        .then(data => {
+            if (data && data.success && data.data.discord_user) {
+                const user = data.data.discord_user;
+                const status = data.data.discord_status;
+
+                document.getElementById("discord-username").textContent = user.username;
+
+                const statusText = {
+                    online: "En línea",
+                    idle: "Ausente",
+                    dnd: "No molestar",
+                    offline: "Desconectado"
+                };
+
+                document.getElementById("status-text").textContent = statusText[status] || "Desconocido";
+
+                const indicator = document.querySelector(".status-indicator");
+                indicator.className = "status-indicator " + (status || "offline");
+            } else {
+                document.getElementById("discord-username").textContent = "Usuario no disponible";
+            }
+        })
+        .catch(() => {
+            document.getElementById("discord-username").textContent = "Error de conexión";
+            document.getElementById("status-text").textContent = "No disponible";
+        });
+        window.addEventListener("load", function () {
+        setTimeout(() => {
+                document.getElementById("loader").style.display = "none";
+                document.getElementById("main-content").style.display = "block";
+            }, 1000);
+        });
+        
+</script>
+<script>
+    const music = document.getElementById("bg-music");
+    const muteBtn = document.getElementById("mute-btn");
+
+    let isMuted = false;
+    let hasStarted = false;
+
+    muteBtn.addEventListener("click", () => {
+        if (!hasStarted) {
+            music.play();
+            hasStarted = true;
+        }
+
+        isMuted = !isMuted;
+        music.muted = isMuted;
+
+        muteBtn.textContent = isMuted ? "▶ Play" : "▌▌Pause";
+    });
+</script>
 </body>
 </html>

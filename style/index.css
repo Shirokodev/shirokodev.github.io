@@ -1,0 +1,219 @@
+body {
+    background: #000 url('/images/background.gif') repeat;
+    color: #000;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    margin: 0;
+    padding: 0;
+
+}
+
+/* Navbar wrapper con espacio arriba */
+.navbar-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+/* Navbar más angosta */
+.navbar {
+    background-color: #ffffcc;
+    border: 4px ridge #fff;
+    padding: 10px 20px;
+    width: 500px;
+    position: relative; 
+}
+
+/* Botón de música */
+.music-toggle {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#mute-btn {
+    font-family: "Verdana", sans-serif;
+    font-size: 11px; 
+    color: #444;
+    background-color: #d4d0c8;
+    border: 2px solid #fff;
+    border-right: 2px solid #808080;
+    border-bottom: 2px solid #808080;
+    border-left: 2px solid #fff;
+    border-top: 2px solid #fff;
+    padding: 1px 6px; 
+    box-shadow: inset -1px -1px 0 #fff, inset 1px 1px 0 #808080;
+    cursor: pointer;
+    line-height: 1;
+    height: 22px;
+}
+
+#mute-btn:active {
+    border-top: 2px solid #808080;
+    border-left: 2px solid #808080;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #808080;
+}
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+.navbar a {
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    transition: color 0.2s ease;
+}
+
+.navbar a:hover {
+    color: #f04747; 
+}
+
+
+/* Contenedor principal */
+.main-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    padding: 0 20px;
+}
+
+/* Sidebar */
+.sidebar {
+    background-color: #f9ffc2;
+    border: 6px ridge #fff;
+    padding: 15px;
+    width: 200px;
+    text-align: center;
+}
+
+/* Imagen de perfil */
+.profile-pic {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border: 4px ridge #fff;
+    background-color: #fff;
+    margin-bottom: 10px;
+}
+
+/* Centrado de nombre */
+.sidebar h2 {
+    margin: 10px 0 5px;
+    font-size: 1.2em;
+}
+
+
+/* Contenido */
+.content-box {
+    background-color: #f9ffc2;
+    border: 6px ridge #fff;
+    padding: 20px;
+    max-width: 700px;
+    flex-grow: 1;
+}
+
+/* Estado de Discord */
+#discord-status {
+    margin-top: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.status-indicator {
+    width: 6px;
+    height: 6px;
+    border-radius: 10%;
+    display: inline-block;
+    border: 2px solid #000;
+}
+.online {
+    background-color: #43b581;
+}
+.idle {
+    background-color: #faa61a;
+}
+.dnd {
+    background-color: #f04747;
+}
+.offline {
+    background-color: #747f8d;
+}
+
+/*Animaciones*/
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.fade-in.delay-1 {
+    animation-delay: 0.3s;
+}
+.fade-in.delay-2 {
+    animation-delay: 0.6s;
+}
+.fade-in.delay-3 {
+    animation-delay: 0.9s;
+}
+.fade-in.delay-4 {
+    animation-delay: 1.2s;
+}
+
+
+.loader-content{
+     animation: intenseFlicker 2s linear forwards;
+}
+
+@keyframes intenseFlicker {
+    0%   { opacity: 0.3; }
+    10%  { opacity: 1; }
+    20%  { opacity: 0.6; }
+    30%  { opacity: 0.9; }
+    40%  { opacity: 0.4; }
+    50%  { opacity: 1; }
+    60%  { opacity: 0.5; }
+    70%  { opacity: 0.8; }
+    80%  { opacity: 0.3; }
+    90%  { opacity: 1; }
+    100% { opacity: 1; }
+}
+
+
+#loader {
+    position: fixed;
+    z-index: 9999;
+    background-color: black;
+    color: #00ff00;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Courier New", monospace;
+    flex-direction: column;
+}
+
