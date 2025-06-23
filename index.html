@@ -108,14 +108,12 @@
     const loader = document.getElementById("loader");
     const main = document.getElementById("main-content");
 
-    const hasLoaded = localStorage.getItem("visited");
+    const hasLoaded = sessionStorage.getItem("visited");
 
     if (hasLoaded) {
-        // Ya visitó antes → no mostrar el loader
         loader.style.display = "none";
         main.style.display = "block";
     } else {
-        // Primera visita → mostrar loader y ocultar contenido por unos segundos
         setTimeout(() => {
             loader.style.display = "none";
             main.style.display = "block";
